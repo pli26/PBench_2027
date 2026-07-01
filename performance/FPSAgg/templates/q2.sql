@@ -1,0 +1,1 @@
+select GBATTR, sum(sva) / sum(cntva) as sumva, sum(svb) / sum(cntvb) as sumvb from (select GBATTR as GBATTR, sum(va) as sva, sum(vb) as svb, count(va) as cntva, count(vb) as cntvb from fp group by GBATTR) as subquery join jc on GBATTR = c1to10 group by GBATTR

@@ -1,0 +1,153 @@
+{
+    "gprom": {
+        "dt": {
+            "p": {
+                "times": [
+                    0.012326,
+                    0.749787,
+                    11.470362999999999
+                ],
+                "variances": [
+                    8.90333333333347e-10,
+                    1.0700688285714487e-05,
+                    0.001312981787619044
+                ],
+                "rescnt": [],
+                "var-time": [
+                    7.223213802801776e-08,
+                    1.4271637526010037e-05,
+                    0.00011446732658931928
+                ]
+            },
+            "d": {
+                "times": [
+                    0.0151,
+                    0.0788,
+                    1.3
+                ],
+                "variances": [
+                    1.6666666666666637e-08,
+                    1.266666666666656e-07,
+                    2.0000000000000036e-05
+                ],
+                "rescnt": [],
+                "var-time": [
+                    1.1037527593818964e-06,
+                    1.6074450084602236e-06,
+                    1.538461538461541e-05
+                ]
+            }
+        },
+        "id": {
+            "p": {
+                "times": [],
+                "variances": [],
+                "rescnt": [],
+                "var-time": []
+            },
+            "d": {
+                "times": [],
+                "variances": [],
+                "rescnt": [],
+                "var-time": []
+            }
+        }
+    },
+    "smokedduck": {
+        "1": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "2": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "3": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "4": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "5": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "6": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        }
+    },
+    "sqlprov": {
+        "1": {
+            "times": [],
+            "variances": [],
+            "logsize": [],
+            "var-time": []
+        },
+        "2": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "3": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "4": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "5": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "6": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        }
+    },
+    "provsql": {
+        "1": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "2": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "3": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "4": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "5": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        },
+        "6": {
+            "times": [],
+            "variances": [],
+            "var-time": []
+        }
+    }
+}

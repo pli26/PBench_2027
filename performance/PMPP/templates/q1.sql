@@ -1,0 +1,1 @@
+select ga from vpgn1k join js on ga = p10

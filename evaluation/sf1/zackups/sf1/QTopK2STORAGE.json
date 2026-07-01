@@ -1,0 +1,32 @@
+{
+    "gprom": {
+        "p": {
+            "storage": []
+        },
+        "d": {
+            "storage": []
+        }
+    },
+    "smokedduck": {
+        "storage": [
+            34.25,
+            34.25,
+            34.25,
+            34.75
+        ]
+    },
+    "sqlprov": {
+        "storage": [
+            96.5,
+            96.8828125,
+            100.6796875,
+            117.5703125
+        ]
+    },
+    "provsql": {
+        "storage": []
+    },
+    "links": {
+        "storage": []
+    }
+}

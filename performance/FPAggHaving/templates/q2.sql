@@ -1,0 +1,1 @@
+select gb, ava, avb from (select gb, avg(va) as ava, avg(vb) as avb from fp group by gb having avg(va) < HAVING_VALUE) as subquery join jc on gb = c1to1

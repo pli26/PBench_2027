@@ -1,0 +1,10 @@
+select (provone || provtwo) as prov
+from (
+    select agg.tuid as tuids, array_agg(provone) as provone, array_agg(provtwo) as provtwo
+    from (
+        select jt.tuid as tuid, r2.tuid as provone, s2.tuid as provtwo
+        from fp_2 as r2 (tuid, id, ga, gb, gc, hv, va, vb, vc), jc_2 as s2 (tuid, jid, c1to1, c1to10, c1to50),
+            lateral readjoin(1, r2.tuid, s2.tuid) as jt(tuid)
+        ) sub, lateral readaggregation(2, sub.tuid) as agg(tuid)
+    group by agg.tuid
+) subb, lateral readjoin(3, subb.tuids) as agg(tuid);

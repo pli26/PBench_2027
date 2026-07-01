@@ -1,0 +1,1 @@
+select ga, avg(va) as ava, avg(vb) as avb from vpgn1k, jc where ga = c1to10 and WHERECONDITION group by ga

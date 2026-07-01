@@ -1,0 +1,9 @@
+/results*
+/gprom/*.sql
+/provsql/*.sql
+/sqlprov/*.sql
+/smokedduck/*.sql
+/duckdb/*.sql
+/postgresql/*.sql
+systems.config
+

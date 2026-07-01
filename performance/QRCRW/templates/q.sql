@@ -1,0 +1,1 @@
+select max(gb) as maxgb from (select gb, avg(va) as va, avg(vb) as vb from fp group by gb) sub

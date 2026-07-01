@@ -1,0 +1,1 @@
+select SELECT_CLAUSE from FROM_TABLE group by GROUP_BY_ATTRIBUTE

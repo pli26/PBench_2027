@@ -1,0 +1,1 @@
+select * from (select gb, avg(va) as ava from (select * from fp where gb >= 1 and gb < 16) fp join jc on gb = c1to10 group by gb) tt where ava < 15;

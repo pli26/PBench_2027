@@ -1,0 +1,1 @@
+CAPTURE PROVENANCE WITH COARSE GRAINED RANGESB(fp(gb 1,98,198,301,403,503,600,703,804,902,1001)) OF (select * from (select gb, avg(va) as ava from fp join jc on gb = c1to10 group by gb) tt where ava < 15);

@@ -1,0 +1,1 @@
+select distinct gb from TABLE join JOINED_TBL on gb = c1to10

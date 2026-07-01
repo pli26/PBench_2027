@@ -1,0 +1,1 @@
+select ga, avg(va) from vpgn100 v where exists (select 1 from jc j1 where v.ga = j1.c1to10) and exists(select 1 from jc j2 where j2.c1to10 = v.ga) group by ga

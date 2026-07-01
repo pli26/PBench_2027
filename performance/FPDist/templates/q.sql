@@ -1,0 +1,1 @@
+select distinct DISTINCT_ATTRIBUTE from fp

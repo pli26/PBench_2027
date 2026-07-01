@@ -1,0 +1,1 @@
+select ga, avg(va) as ava from vpgn1k join js on ga = p50 group by ga

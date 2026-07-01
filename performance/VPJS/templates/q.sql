@@ -1,0 +1,1 @@
+select ga, avg(va) as ava, avg(vb) as avb from FROM_TABLE join JOINED_TABLE on JOIN_CONDITION group by ga

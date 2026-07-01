@@ -1,0 +1,59 @@
+{
+    "gprom": {
+        "p": {
+            "times": [
+                5.779356
+            ],
+            "variances": [
+                0.0001533676840000008
+            ],
+            "rescnt": []
+        },
+        "d": {
+            "times": [],
+            "variances": [],
+            "rescnt": []
+        }
+    },
+    "smokedduck": {
+        "1": {
+            "times": [],
+            "variances": []
+        },
+        "2": {
+            "times": [],
+            "variances": []
+        }
+    },
+    "sqlprov": {
+        "1": {
+            "times": [],
+            "variances": [],
+            "logsize": []
+        },
+        "2": {
+            "times": [],
+            "variances": []
+        }
+    },
+    "provsql": {
+        "times": [],
+        "variances": []
+    },
+    "links": {
+        "times": [],
+        "variances": []
+    },
+    "postgresql": {
+        "times": [
+            2.997616
+        ],
+        "variances": [
+            8.997372285714135e-06
+        ]
+    },
+    "duckdb": {
+        "times": [],
+        "variances": []
+    }
+}

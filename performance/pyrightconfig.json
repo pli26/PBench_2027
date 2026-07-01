@@ -1,0 +1,7 @@
+// pyrightconfig.json
+{
+    "include": ["."],
+    "extraPaths": [
+        "utils"
+    ]
+}

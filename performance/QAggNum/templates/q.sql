@@ -1,0 +1,1 @@
+select gb, AGG_COUNT from fp group by gb

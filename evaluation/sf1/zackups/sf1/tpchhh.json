@@ -1,0 +1,18 @@
+{
+    "gpromp" :{
+        "var-time": []
+    },
+    "gpromd" :{
+        "var-time": []
+    },
+    "smokedduck" :{
+        "var-time": []
+    },
+    "provsql" :{
+        "var-time": []
+    },
+    "sqlprov": {
+        "var-time": []
+    }
+
+}

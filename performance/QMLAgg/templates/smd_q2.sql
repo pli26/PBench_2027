@@ -1,0 +1,1 @@
+select max(va) as maxava, max(vb) as maxvb from (select gc, avg(va) as va, avg(vb) as vb from fp group by gc) sub group by null

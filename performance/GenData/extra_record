@@ -1,0 +1,1214 @@
+##################################################
+# provsql
+##################################################
+
+ pg_database_size
+------------------
+       3320443363
+(1 row)
+p1=# select add_provenance('dj1');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 78.058 ms
+
+p1=# select add_provenance('dj2');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 78.678 ms
+
+
+p1=# select add_provenance('jj');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 77.518 ms
+
+p1=# select add_provenance('jjj');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 78.156 ms
+
+p1=# select add_provenance('js');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 126.803 ms
+
+
+p1=# select add_provenance('jc');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 201.384 ms
+
+p1=# select add_provenance('fp');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 40893.160 ms (00:40.893)
+
+p1=# select add_provenance('vpgn100');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 467.760 ms
+
+
+p1=# select add_provenance('vpgn1k');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 3443.990 ms (00:03.444)
+
+p1=# select add_provenance('vpgn10k');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 33996.575 ms (00:33.997)
+
+
+p1=# select add_provenance('vpgs100');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 391.189 ms
+
+p1=# select add_provenance('vpgs1k');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 3544.340 ms (00:03.544)
+
+p1=# select add_provenance('vpgs10k');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 33477.593 ms (00:33.478)
+
+-rw-------    1 uicdbgroup  staff       65552 Feb 20 01:30 provsql_extra.mmap
+-rw-------    1 uicdbgroup  staff  1610612752 Feb 21 01:28 provsql_gates.mmap
+-rw-------    1 uicdbgroup  staff  1610612760 Feb 21 01:26 provsql_mapping.mmap
+-rw-------    1 uicdbgroup  staff     1048592 Feb 20 01:30 provsql_wires.mmap
+
+
+p1=# select pg_database_size(current_database());
+ pg_database_size
+------------------
+       4860383715
+(1 row)
+
+##################################################
+# sqlprov
+##################################################
+
+ pg_database_size
+------------------
+       3320443363
+(1 row)
+
+
+test=# \i /Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql
+CREATE SCHEMA
+Time: 1.111 ms
+CREATE TABLE
+Time: 1.465 ms
+ALTER TABLE
+Time: 2.142 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:17: NOTICE:  table "var" does not exist, skipping
+DROP TABLE
+Time: 0.162 ms
+CREATE TABLE
+Time: 2.726 ms
+ALTER TABLE
+Time: 1.115 ms
+ALTER TABLE
+Time: 2.481 ms
+CREATE INDEX
+Time: 0.935 ms
+
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:31: NOTICE:  table "shape" does not exist, skipping
+DROP TABLE
+Time: 0.141 ms
+CREATE TABLE
+Time: 1.997 ms
+ALTER TABLE
+Time: 0.782 ms
+ALTER TABLE
+Time: 0.802 ms
+ALTER TABLE
+Time: 0.892 ms
+CREATE INDEX
+Time: 0.686 ms
+INSERT 0 1
+Time: 0.328 ms
+INSERT 0 1
+Time: 0.447 ms
+CREATE SEQUENCE
+Time: 0.343 ms
+ setval
+--------
+      1
+(1 row)
+
+Time: 0.231 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:59: ERROR:  relation "prov_ids" does not exist
+LINE 1: select setval('tuids_seq', currval('prov_ids'), true);
+                                           ^
+Time: 0.170 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:63: ERROR:  function truncatelogs() does not exist
+Time: 0.100 ms
+CREATE FUNCTION
+Time: 0.455 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:77: ERROR:  function analyzelogs() does not exist
+Time: 0.095 ms
+CREATE FUNCTION
+Time: 0.260 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:91: ERROR:  function logsize() does not exist
+Time: 0.089 ms
+CREATE FUNCTION
+Time: 0.305 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:110: NOTICE:  function report_read_tuid(text,anyelement) does not exist, skipping
+DROP FUNCTION
+Time: 0.084 ms
+CREATE FUNCTION
+Time: 2.182 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:126: NOTICE:  table "logfilter" does not exist, skipping
+DROP TABLE
+Time: 0.181 ms
+CREATE TABLE
+Time: 0.615 ms
+ALTER TABLE
+Time: 0.937 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:132: ERROR:  function writefilter(integer, integer) does not exist
+Time: 0.217 ms
+CREATE FUNCTION
+Time: 0.289 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:143: ERROR:  function readfilter(integer, integer) does not exist
+Time: 0.160 ms
+CREATE FUNCTION
+Time: 0.228 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:174: NOTICE:  table "logjoin" does not exist, skipping
+DROP TABLE
+Time: 0.142 ms
+CREATE TABLE
+Time: 1.352 ms
+ALTER TABLE
+Time: 0.267 ms
+ALTER TABLE
+Time: 0.565 ms
+ALTER TABLE
+Time: 0.599 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:189: ERROR:  function readjoin(integer, integer[]) does not exist
+Time: 0.164 ms
+CREATE FUNCTION
+Time: 0.546 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:201: ERROR:  function writejoin(integer, integer[]) does not exist
+Time: 0.136 ms
+CREATE FUNCTION
+Time: 0.258 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:256: ERROR:  function readjoin(integer, integer) does not exist
+Time: 0.135 ms
+CREATE FUNCTION
+Time: 0.241 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:267: ERROR:  function readjoin(integer, integer, integer) does not exist
+Time: 0.142 ms
+CREATE FUNCTION
+Time: 0.185 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:279: ERROR:  function readjoin(integer, integer, integer, integer) does not exist
+Time: 0.160 ms
+CREATE FUNCTION
+Time: 0.200 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:292: ERROR:  function readjoin(integer, integer, integer, integer, integer) does not exist
+Time: 0.140 ms
+CREATE FUNCTION
+Time: 0.183 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:306: ERROR:  function readjoin(integer, integer, integer, integer, integer, integer) does not exist
+Time: 0.146 ms
+CREATE FUNCTION
+Time: 0.193 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:321: ERROR:  function readjoin(integer, integer, integer, integer, integer, integer, integer) does not exist
+Time: 0.139 ms
+CREATE FUNCTION
+Time: 0.194 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:337: ERROR:  function readjoin(integer, integer, integer, integer, integer, integer, integer, integer) does not exist
+Time: 0.138 ms
+CREATE FUNCTION
+Time: 0.208 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:354: ERROR:  function readjoin(integer, integer, integer, integer, integer, integer, integer, integer, integer) does not exist
+Time: 0.140 ms
+CREATE FUNCTION
+Time: 0.202 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:372: ERROR:  function readjoin(integer, integer, integer, integer, integer, integer, integer, integer, integer, integer) does not exist
+Time: 0.143 ms
+CREATE FUNCTION
+Time: 0.208 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:408: ERROR:  function readjoinleft(integer, integer) does not exist
+Time: 0.153 ms
+CREATE FUNCTION
+Time: 0.287 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:461: NOTICE:  table "logaggregation" does not exist, skipping
+DROP TABLE
+Time: 0.148 ms
+CREATE TABLE
+Time: 0.888 ms
+ALTER TABLE
+Time: 0.217 ms
+ALTER TABLE
+Time: 0.576 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:468: ERROR:  function md5(integer[]) does not exist
+Time: 0.174 ms
+CREATE FUNCTION
+Time: 0.200 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:472: NOTICE:  function raise_collision_exception() does not exist, skipping
+DROP FUNCTION
+Time: 0.116 ms
+CREATE FUNCTION
+Time: 0.175 ms
+CREATE INDEX
+Time: 0.551 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:485: ERROR:  function writeaggregation(integer, integer[]) does not exist
+Time: 0.132 ms
+CREATE FUNCTION
+Time: 0.230 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:531: ERROR:  function readaggregation(integer, integer) does not exist
+Time: 0.131 ms
+CREATE FUNCTION
+Time: 0.171 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:546: NOTICE:  table "logorderby" does not exist, skipping
+DROP TABLE
+Time: 0.107 ms
+CREATE TABLE
+Time: 0.664 ms
+ALTER TABLE
+Time: 0.501 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:553: ERROR:  function writeorderby(integer, integer, bigint) does not exist
+Time: 0.145 ms
+CREATE FUNCTION
+Time: 0.179 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:576: ERROR:  function readorderby(integer, integer) does not exist
+Time: 0.140 ms
+CREATE FUNCTION
+Time: 0.198 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:593: NOTICE:  table "logwindow" does not exist, skipping
+DROP TABLE
+Time: 0.105 ms
+CREATE TABLE
+Time: 0.304 ms
+ALTER TABLE
+Time: 0.449 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:602: ERROR:  function writewindow(integer, integer, integer, bigint) does not exist
+Time: 0.134 ms
+CREATE FUNCTION
+Time: 0.175 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:613: ERROR:  function readwindow(integer, integer) does not exist
+Time: 0.117 ms
+CREATE FUNCTION
+Time: 0.174 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:632: NOTICE:  table "logunion" does not exist, skipping
+DROP TABLE
+Time: 0.101 ms
+CREATE TABLE
+Time: 0.319 ms
+ALTER TABLE
+Time: 0.182 ms
+ALTER TABLE
+Time: 0.413 ms
+ALTER TABLE
+Time: 0.455 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:647: ERROR:  function writeunion(integer, integer) does not exist
+Time: 0.125 ms
+CREATE FUNCTION
+Time: 0.198 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:671: ERROR:  function readunion(integer, integer) does not exist
+Time: 0.125 ms
+CREATE FUNCTION
+Time: 0.158 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:687: NOTICE:  table "logcase" does not exist, skipping
+DROP TABLE
+Time: 0.104 ms
+CREATE TABLE
+Time: 0.293 ms
+ALTER TABLE
+Time: 0.501 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:694: ERROR:  function writecase(integer, integer, integer) does not exist
+Time: 0.129 ms
+CREATE FUNCTION
+Time: 0.172 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:705: ERROR:  function readcase(integer, integer) does not exist
+Time: 0.114 ms
+CREATE FUNCTION
+Time: 0.157 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:722: NOTICE:  table "logtblf" does not exist, skipping
+DROP TABLE
+Time: 0.103 ms
+CREATE TABLE
+Time: 0.285 ms
+ALTER TABLE
+Time: 0.171 ms
+ALTER TABLE
+Time: 0.392 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:729: ERROR:  function writetblf(integer) does not exist
+Time: 0.117 ms
+CREATE FUNCTION
+Time: 0.142 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:739: ERROR:  function readtblf(integer) does not exist
+Time: 0.106 ms
+CREATE FUNCTION
+Time: 0.144 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:760: ERROR:  function toy(integer[]) does not exist
+Time: 0.111 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:761: ERROR:  function toy(anyarray) does not exist
+Time: 0.119 ms
+CREATE FUNCTION
+Time: 0.145 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:776: ERROR:  function set(anyarray) does not exist
+Time: 0.115 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:777: ERROR:  function set(integer[]) does not exist
+Time: 0.120 ms
+CREATE FUNCTION
+Time: 0.132 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:785: ERROR:  function set_cat(integer[], integer[]) does not exist
+Time: 0.110 ms
+CREATE FUNCTION
+Time: 0.202 ms
+DROP FUNCTION
+Time: 0.157 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:797: NOTICE:  function set_cat(anyarray,anyarray) does not exist, skipping
+DROP FUNCTION
+Time: 0.107 ms
+CREATE FUNCTION
+Time: 0.163 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:807: NOTICE:  operator | does not exist, skipping
+DROP OPERATOR
+Time: 0.104 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:808: NOTICE:  operator | does not exist, skipping
+DROP OPERATOR
+Time: 0.098 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:814: ERROR:  function array_cat(anyarray, anyarray) does not exist
+Time: 0.174 ms
+CREATE FUNCTION
+Time: 0.145 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:849: NOTICE:  function empty() does not exist, skipping
+DROP FUNCTION
+Time: 0.104 ms
+CREATE FUNCTION
+Time: 0.129 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:860: NOTICE:  aggregate array_cat_agg(pg_catalog.int4[]) does not exist, skipping
+DROP AGGREGATE
+Time: 0.099 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:861: NOTICE:  aggregate array_cat_agg(anyarray) does not exist, skipping
+DROP AGGREGATE
+Time: 0.096 ms
+CREATE AGGREGATE
+Time: 0.390 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:873: NOTICE:  aggregate concat_agg(pg_catalog.int4[]) does not exist, skipping
+DROP AGGREGATE
+Time: 0.098 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:874: NOTICE:  aggregate concat_agg(anyarray) does not exist, skipping
+DROP AGGREGATE
+Time: 0.097 ms
+CREATE AGGREGATE
+Time: 0.146 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:884: NOTICE:  function concat(anyarray) does not exist, skipping
+DROP FUNCTION
+Time: 0.101 ms
+CREATE FUNCTION
+Time: 0.121 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:948: NOTICE:  function the_transition(anyelement,anyelement) does not exist, skipping
+DROP FUNCTION
+Time: 0.142 ms
+CREATE FUNCTION
+Time: 0.172 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:964: NOTICE:  aggregate the(anyelement) does not exist, skipping
+DROP AGGREGATE
+Time: 0.098 ms
+CREATE AGGREGATE
+Time: 0.175 ms
+psql:/Users/uicdbgroup/pengyuan/exp_bk/exp/exps2/sqlprovexecutable/ll-setup-vldb2018.sql:975: ERROR:  function provsize(integer[]) does not exist
+Time: 0.102 ms
+CREATE FUNCTION
+Time: 0.169 ms
+Time: 0.100 ms
+
+
+test=# CREATE SEQUENCE prov_ids;
+CREATE SEQUENCE
+Time: 1.760 ms
+
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj1_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj1_sqlprov.sql:1: NOTICE:  materialized view "dj1_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.982 ms
+SELECT 10000
+Time: 21.176 ms
+CREATE INDEX
+Time: 5.490 ms
+CREATE INDEX
+Time: 6.838 ms
+CREATE INDEX
+Time: 5.342 ms
+CREATE INDEX
+Time: 4.713 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj1_sqlprov.sql:7: NOTICE:  materialized view "dj1_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.129 ms
+SELECT 10000
+Time: 20.948 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj1_sqlprov.sql:15: NOTICE:  index "idx_dj1_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.264 ms
+CREATE INDEX
+Time: 2.388 ms
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj2_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj2_sqlprov.sql:1: NOTICE:  materialized view "dj2_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.550 ms
+SELECT 10000
+Time: 20.063 ms
+CREATE INDEX
+Time: 4.790 ms
+CREATE INDEX
+Time: 7.686 ms
+CREATE INDEX
+Time: 5.848 ms
+CREATE INDEX
+Time: 4.949 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj2_sqlprov.sql:7: NOTICE:  materialized view "dj2_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.157 ms
+SELECT 10000
+Time: 21.201 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/dj2_sqlprov.sql:15: NOTICE:  index "idx_dj2_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.226 ms
+CREATE INDEX
+Time: 2.418 ms
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jj_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jj_sqlprov.sql:1: NOTICE:  materialized view "jj_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.488 ms
+SELECT 10000
+Time: 20.642 ms
+CREATE INDEX
+Time: 6.391 ms
+CREATE INDEX
+Time: 6.499 ms
+CREATE INDEX
+Time: 5.603 ms
+CREATE INDEX
+Time: 5.092 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jj_sqlprov.sql:7: NOTICE:  materialized view "jj_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.153 ms
+SELECT 10000
+Time: 20.985 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jj_sqlprov.sql:15: NOTICE:  index "idx_jj_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.224 ms
+CREATE INDEX
+Time: 3.790 ms
+
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jjj_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jjj_sqlprov.sql:1: NOTICE:  materialized view "jjj_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.479 ms
+SELECT 10000
+Time: 20.096 ms
+CREATE INDEX
+Time: 7.786 ms
+CREATE INDEX
+Time: 6.078 ms
+CREATE INDEX
+Time: 5.169 ms
+CREATE INDEX
+Time: 4.737 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jjj_sqlprov.sql:7: NOTICE:  materialized view "jjj_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.136 ms
+SELECT 10000
+Time: 20.490 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jjj_sqlprov.sql:15: NOTICE:  index "idx_jjj_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.228 ms
+CREATE INDEX
+Time: 2.528 ms
+
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/js_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/js_sqlprov.sql:1: NOTICE:  materialized view "js_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.650 ms
+SELECT 25000
+Time: 36.314 ms
+CREATE INDEX
+Time: 15.363 ms
+CREATE INDEX
+Time: 8.481 ms
+CREATE INDEX
+Time: 7.468 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/js_sqlprov.sql:6: NOTICE:  materialized view "js_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.111 ms
+SELECT 25000
+Time: 29.306 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/js_sqlprov.sql:13: NOTICE:  index "idx_js_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.215 ms
+CREATE INDEX
+Time: 4.163 ms
+
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jc_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jc_sqlprov.sql:1: NOTICE:  materialized view "jc_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.473 ms
+SELECT 50000
+Time: 54.574 ms
+CREATE INDEX
+Time: 16.653 ms
+CREATE INDEX
+Time: 12.618 ms
+CREATE INDEX
+Time: 12.475 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jc_sqlprov.sql:6: NOTICE:  materialized view "jc_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.098 ms
+SELECT 50000
+Time: 48.446 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/jc_sqlprov.sql:13: NOTICE:  index "idx_jc_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.267 ms
+CREATE INDEX
+Time: 7.459 ms
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/fp_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/fp_sqlprov.sql:1: NOTICE:  materialized view "fp_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.554 ms
+SELECT 10000000
+Time: 4289.255 ms (00:04.289)
+CREATE INDEX
+Time: 2237.154 ms (00:02.237)
+CREATE INDEX
+Time: 1816.660 ms (00:01.817)
+CREATE INDEX
+Time: 1603.559 ms (00:01.604)
+CREATE INDEX
+Time: 1839.875 ms (00:01.840)
+CREATE INDEX
+Time: 1835.856 ms (00:01.836)
+CREATE INDEX
+Time: 1838.401 ms (00:01.838)
+CREATE INDEX
+Time: 1842.162 ms (00:01.842)
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/fp_sqlprov.sql:10: NOTICE:  materialized view "fp_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.135 ms
+SELECT 10000000
+Time: 17204.774 ms (00:17.205)
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/fp_sqlprov.sql:21: NOTICE:  index "idx_fp_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 131.352 ms
+CREATE INDEX
+Time: 1718.087 ms (00:01.718)
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs100_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs100_sqlprov.sql:1: NOTICE:  materialized view "vpgs100_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.525 ms
+SELECT 100000
+Time: 81.196 ms
+CREATE INDEX
+Time: 26.403 ms
+CREATE INDEX
+Time: 23.068 ms
+CREATE INDEX
+Time: 23.232 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs100_sqlprov.sql:6: NOTICE:  materialized view "vpgs100_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.106 ms
+SELECT 100000
+Time: 95.408 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs100_sqlprov.sql:13: NOTICE:  index "idx_vpgs100_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.246 ms
+CREATE INDEX
+Time: 19.673 ms
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs1k_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs1k_sqlprov.sql:1: NOTICE:  materialized view "vpgs1k_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.721 ms
+SELECT 1000000
+Time: 429.910 ms
+CREATE INDEX
+Time: 200.569 ms
+CREATE INDEX
+Time: 182.251 ms
+CREATE INDEX
+Time: 181.912 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs1k_sqlprov.sql:6: NOTICE:  materialized view "vpgs1k_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.145 ms
+SELECT 1000000
+Time: 989.662 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs1k_sqlprov.sql:13: NOTICE:  index "idx_vpgs1k_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 20.631 ms
+CREATE INDEX
+Time: 145.214 ms
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs10k_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs10k_sqlprov.sql:1: NOTICE:  materialized view "vpgs10k_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.550 ms
+SELECT 10000000
+Time: 3846.838 ms (00:03.847)
+CREATE INDEX
+Time: 2005.019 ms (00:02.005)
+CREATE INDEX
+Time: 1855.876 ms (00:01.856)
+CREATE INDEX
+Time: 1845.991 ms (00:01.846)
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs10k_sqlprov.sql:6: NOTICE:  materialized view "vpgs10k_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.153 ms
+SELECT 10000000
+Time: 10005.739 ms (00:10.006)
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgs10k_sqlprov.sql:13: NOTICE:  index "idx_vpgs10k_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 77.367 ms
+CREATE INDEX
+Time: 1508.022 ms (00:01.508)
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn100_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn100_sqlprov.sql:1: NOTICE:  materialized view "vpgn100_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.553 ms
+SELECT 100000
+Time: 79.821 ms
+CREATE INDEX
+Time: 29.574 ms
+CREATE INDEX
+Time: 25.662 ms
+CREATE INDEX
+Time: 25.913 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn100_sqlprov.sql:6: NOTICE:  materialized view "vpgn100_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.119 ms
+SELECT 100000
+Time: 97.501 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn100_sqlprov.sql:13: NOTICE:  index "idx_vpgn100_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 0.343 ms
+CREATE INDEX
+Time: 19.881 ms
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn1k_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn1k_sqlprov.sql:1: NOTICE:  materialized view "vpgn1k_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.597 ms
+SELECT 1000000
+Time: 439.806 ms
+CREATE INDEX
+Time: 197.878 ms
+CREATE INDEX
+Time: 183.874 ms
+CREATE INDEX
+Time: 181.687 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn1k_sqlprov.sql:6: NOTICE:  materialized view "vpgn1k_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.153 ms
+SELECT 1000000
+Time: 994.634 ms
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn1k_sqlprov.sql:13: NOTICE:  index "idx_vpgn1k_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 20.864 ms
+CREATE INDEX
+Time: 151.762 ms
+
+test=# \i /Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn10k_sqlprov.sql
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn10k_sqlprov.sql:1: NOTICE:  materialized view "vpgn10k_1" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.761 ms
+SELECT 10000000
+Time: 3951.976 ms (00:03.952)
+CREATE INDEX
+Time: 1874.921 ms (00:01.875)
+CREATE INDEX
+Time: 1745.006 ms (00:01.745)
+CREATE INDEX
+Time: 1756.405 ms (00:01.756)
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn10k_sqlprov.sql:6: NOTICE:  materialized view "vpgn10k_2" does not exist, skipping
+DROP MATERIALIZED VIEW
+Time: 0.160 ms
+SELECT 10000000
+Time: 9883.208 ms (00:09.883)
+psql:/Users/uicdbgroup/pengyuan/exp/sf1/GenData/data/sf1/vpgn10k_sqlprov.sql:13: NOTICE:  index "idx_vpgn10k_2_tuid" does not exist, skipping
+DROP INDEX
+Time: 205.661 ms
+CREATE INDEX
+Time: 1725.288 ms (00:01.725)
+
+test=# select pg_database_size(current_database());
+ pg_database_size
+------------------
+      12302725603
+(1 row)
+
+
+
+###########################################
+TPCH SF1
+
+anal
+gtpch1=# select pg_database_size(current_database());
+ pg_database_size
+------------------
+       2267386339
+(1 row)
+###########################################
+provsql.
+
+start db:
+-rw-------   1 uicdbgroup  staff    65552 Feb 22 18:17 provsql_extra.mmap
+-rw-------   1 uicdbgroup  staff  3145744 Feb 22 18:17 provsql_gates.mmap
+-rw-------   1 uicdbgroup  staff  1572888 Feb 22 18:17 provsql_mapping.mmap
+-rw-------   1 uicdbgroup  staff  1048592 Feb 22 18:17 provsql_wires.mmap
+ptpch1=# select add_provenance('region');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 23.000 ms
+
+ptpch1=# select add_provenance('nation');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 15.932 ms
+
+ptpch1=# select add_provenance('part');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 598.677 ms
+
+ptpch1=# select add_provenance('supplier');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 76.177 ms
+
+ptpch1=# select add_provenance('partsupp');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 2940.961 ms (00:02.941)
+
+
+ptpch1=# select add_provenance('customer');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 599.099 ms
+
+
+ptpch1=# select add_provenance('orders');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 4979.838 ms (00:04.980)
+
+ptpch1=# select add_provenance('lineitem');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 26638.379 ms (00:26.638)
+
+
+
+[arm64] ~/pengyuan/DBs/installed/nixDB/sf2 uicdbgroup@uicdbgrpsclavis ❯ ls -l provsql_*
+-rw-------  1 uicdbgroup  staff      65552 Feb 22 18:17 provsql_extra.mmap
+-rw-------  1 uicdbgroup  staff  805306384 Feb 22 18:27 provsql_gates.mmap
+-rw-------  1 uicdbgroup  staff  805306392 Feb 22 18:27 provsql_mapping.mmap
+-rw-------  1 uicdbgroup  staff    1048592 Feb 22 18:17 provsql_wires.mmap
+
+
+i>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>sqlprov.
+
+
+
+
+gtpch1=# DROP SEQUENCE IF EXISTS prov_ids cascade;
+CREATE SEQUENCE prov_ids;
+NOTICE:  sequence "prov_ids" does not exist, skipping
+DROP SEQUENCE
+Time: 0.980 ms
+CREATE SEQUENCE
+Time: 2.353 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW region_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM region;
+SELECT 5
+Time: 4.150 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW nation_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM nation;
+SELECT 25
+Time: 4.889 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW part_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM part;
+SELECT 200000
+Time: 176.219 ms
+
+CREATE MATERIALIZED VIEW supplier_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM supplier;
+
+SELECT 10000
+Time: 10.188 ms
+
+
+gtpch1=# CREATE MATERIALIZED VIEW partsupp_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM partsupp;
+SELECT 800000
+Time: 508.305 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW customer_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM customer;
+SELECT 150000
+Time: 143.852 ms
+
+
+gtpch1=# CREATE MATERIALIZED VIEW orders_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM orders;
+SELECT 1500000
+Time: 967.384 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW lineitem_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM lineitem;
+SELECT 6001215
+Time: 4408.629 ms (00:04.409)
+
+
+gtpch1=# CREATE INDEX ON region_1 (R_REGIONKEY);
+CREATE INDEX ON nation_1 (N_NATIONKEY);
+CREATE INDEX ON part_1 (P_PARTKEY);
+CREATE INDEX ON supplier_1 (S_SUPPKEY);
+CREATE INDEX ON partsupp_1 (PS_PARTKEY, PS_SUPPKEY);
+CREATE INDEX ON customer_1 (C_CUSTKEY);
+CREATE INDEX ON orders_1 (O_ORDERKEY);
+CREATE INDEX ON lineitem_1 (L_ORDERKEY, L_LINENUMBER);
+
+DROP INDEX IF EXISTS nation_fkey_region_1;
+DROP INDEX IF EXISTS supplier_fkey_nation_1;
+DROP INDEX IF EXISTS partsupp_fkey_part_1;
+DROP INDEX IF EXISTS partsupp_fkey_supplier_1;
+DROP INDEX IF EXISTS customer_fkey_nation_1;
+DROP INDEX IF EXISTS orders_fkey_customer_1;
+DROP INDEX IF EXISTS lineitem_fkey_partsupp_1;
+DROP INDEX IF EXISTS lineitem_fkey_orders_1;
+
+CREATE INDEX nation_fkey_region_1 ON NATION_1 (N_REGIONKEY);
+CREATE INDEX supplier_fkey_nation_1 ON SUPPLIER_1 (S_NATIONKEY);
+CREATE INDEX partsupp_fkey_part_1 ON PARTSUPP_1 (PS_PARTKEY);
+CREATE INDEX partsupp_fkey_supplier_1 ON PARTSUPP_1 (PS_SUPPKEY);
+CREATE INDEX customer_fkey_nation_1 ON CUSTOMER_1 (C_NATIONKEY);
+CREATE INDEX orders_fkey_customer_1 ON ORDERS_1 (O_CUSTKEY);
+CREATE INDEX lineitem_fkey_partsupp_1 ON LINEITEM_1 (L_PARTKEY, L_SUPPKEY);
+CREATE INDEX lineitem_fkey_orders_1 ON LINEITEM_1 (L_ORDERKEY);
+CREATE INDEX
+Time: 3.343 ms
+CREATE INDEX
+Time: 1.756 ms
+CREATE INDEX
+Time: 81.570 ms
+CREATE INDEX
+Time: 3.421 ms
+CREATE INDEX
+Time: 226.885 ms
+CREATE INDEX
+Time: 41.989 ms
+CREATE INDEX
+Time: 306.482 ms
+CREATE INDEX
+Time: 1497.538 ms (00:01.498)
+NOTICE:  index "nation_fkey_region_1" does not exist, skipping
+DROP INDEX
+Time: 0.099 ms
+NOTICE:  index "supplier_fkey_nation_1" does not exist, skipping
+DROP INDEX
+Time: 0.077 ms
+NOTICE:  index "partsupp_fkey_part_1" does not exist, skipping
+DROP INDEX
+Time: 0.064 ms
+NOTICE:  index "partsupp_fkey_supplier_1" does not exist, skipping
+DROP INDEX
+Time: 0.062 ms
+NOTICE:  index "customer_fkey_nation_1" does not exist, skipping
+DROP INDEX
+Time: 0.061 ms
+NOTICE:  index "orders_fkey_customer_1" does not exist, skipping
+DROP INDEX
+Time: 0.061 ms
+NOTICE:  index "lineitem_fkey_partsupp_1" does not exist, skipping
+DROP INDEX
+Time: 0.060 ms
+NOTICE:  index "lineitem_fkey_orders_1" does not exist, skipping
+DROP INDEX
+Time: 0.063 ms
+CREATE INDEX
+Time: 0.374 ms
+CREATE INDEX
+Time: 4.982 ms
+CREATE INDEX
+Time: 188.038 ms
+CREATE INDEX
+Time: 242.309 ms
+CREATE INDEX
+Time: 89.619 ms
+CREATE INDEX
+Time: 418.024 ms
+CREATE INDEX
+Time: 2494.328 ms (00:02.494)
+CREATE INDEX
+Time: 1246.242 ms (00:01.246)
+
+gtpch1=# CREATE MATERIALIZED VIEW region_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] R_REGIONKEY
+       , array[nextval('prov_ids')::int] R_NAME
+       , array[nextval('prov_ids')::int] R_COMMENT
+  FROM region_1;
+SELECT 5
+Time: 5.613 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW nation_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] N_NATIONKEY
+       , array[nextval('prov_ids')::int] N_NAME
+       , array[nextval('prov_ids')::int] N_REGIONKEY
+       , array[nextval('prov_ids')::int] N_COMMENT
+  FROM nation_1;
+SELECT 25
+Time: 6.177 ms
+
+
+gtpch1=# CREATE MATERIALIZED VIEW part_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] P_PARTKEY
+       , array[nextval('prov_ids')::int] P_NAME
+       , array[nextval('prov_ids')::int] P_MFGR
+       , array[nextval('prov_ids')::int] P_BRAND
+       , array[nextval('prov_ids')::int] P_TYPE
+       , array[nextval('prov_ids')::int] P_SIZE
+       , array[nextval('prov_ids')::int] P_CONTAINER
+       , array[nextval('prov_ids')::int] P_RETAILPRICE
+       , array[nextval('prov_ids')::int] P_COMMENT
+  FROM part_1;
+SELECT 200000
+Time: 435.780 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW supplier_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] S_SUPPKEY
+       , array[nextval('prov_ids')::int] S_NAME
+       , array[nextval('prov_ids')::int] S_ADDRESS
+       , array[nextval('prov_ids')::int] S_NATIONKEY
+       , array[nextval('prov_ids')::int] S_PHONE
+       , array[nextval('prov_ids')::int] S_ACCTBAL
+       , array[nextval('prov_ids')::int] S_COMMENT
+  FROM supplier_1;
+SELECT 10000
+Time: 51.874 ms
+
+
+gtpch1=# CREATE MATERIALIZED VIEW partsupp_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] PS_PARTKEY
+       , array[nextval('prov_ids')::int] PS_SUPPKEY
+       , array[nextval('prov_ids')::int] PS_AVAILQTY
+       , array[nextval('prov_ids')::int] PS_SUPPLYCOST
+       , array[nextval('prov_ids')::int] PS_COMMENT
+  FROM partsupp_1;
+SELECT 800000
+Time: 1003.013 ms (00:01.003)
+
+gtpch1=# CREATE MATERIALIZED VIEW customer_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] C_CUSTKEY
+       , array[nextval('prov_ids')::int] C_NAME
+       , array[nextval('prov_ids')::int] C_ADDRESS
+       , array[nextval('prov_ids')::int] C_NATIONKEY
+       , array[nextval('prov_ids')::int] C_PHONE
+       , array[nextval('prov_ids')::int] C_ACCTBAL
+       , array[nextval('prov_ids')::int] C_MKTSEGMENT
+       , array[nextval('prov_ids')::int] C_COMMENT
+  FROM customer_1;
+SELECT 150000
+Time: 320.978 ms
+
+gtpch1=# CREATE MATERIALIZED VIEW orders_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] O_ORDERKEY
+       , array[nextval('prov_ids')::int] O_CUSTKEY
+       , array[nextval('prov_ids')::int] O_ORDERSTATUS
+       , array[nextval('prov_ids')::int] O_TOTALPRICE
+       , array[nextval('prov_ids')::int] O_ORDERDATE
+       , array[nextval('prov_ids')::int] O_ORDERPRIORITY
+       , array[nextval('prov_ids')::int] O_CLERK
+       , array[nextval('prov_ids')::int] O_SHIPPRIORITY
+       , array[nextval('prov_ids')::int] O_COMMENT
+  FROM orders_1;
+SELECT 1500000
+Time: 2947.659 ms (00:02.948)
+
+
+gtpch1=# CREATE MATERIALIZED VIEW lineitem_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] L_ORDERKEY
+       , array[nextval('prov_ids')::int] L_PARTKEY
+       , array[nextval('prov_ids')::int] L_SUPPKEY
+       , array[nextval('prov_ids')::int] L_LINENUMBER
+       , array[nextval('prov_ids')::int] L_QUANTITY
+       , array[nextval('prov_ids')::int] L_EXTENDEDPRICE
+       , array[nextval('prov_ids')::int] L_DISCOUNT
+       , array[nextval('prov_ids')::int] L_TAX
+       , array[nextval('prov_ids')::int] L_RETURNFLAG
+       , array[nextval('prov_ids')::int] L_LINESTATUS
+       , array[nextval('prov_ids')::int] L_SHIPDATE
+       , array[nextval('prov_ids')::int] L_COMMITDATE
+       , array[nextval('prov_ids')::int] L_RECEIPTDATE
+       , array[nextval('prov_ids')::int] L_SHIPINSTRUCT
+       , array[nextval('prov_ids')::int] L_SHIPMODE
+       , array[nextval('prov_ids')::int] L_COMMENT
+  FROM lineitem_1;
+SELECT 6001215
+Time: 19440.964 ms (00:19.441)
+
+
+gtpch1=# CREATE INDEX ON region_2 (tuid);
+CREATE INDEX ON nation_2 (tuid);
+CREATE INDEX ON part_2 (tuid);
+CREATE INDEX ON supplier_2 (tuid);
+CREATE INDEX ON partsupp_2 (tuid);
+CREATE INDEX ON customer_2 (tuid);
+CREATE INDEX ON orders_2 (tuid);
+CREATE INDEX ON lineitem_2 (tuid);
+CREATE INDEX
+Time: 3.605 ms
+CREATE INDEX
+Time: 2.056 ms
+CREATE INDEX
+Time: 74.820 ms
+CREATE INDEX
+Time: 3.369 ms
+CREATE INDEX
+Time: 116.287 ms
+CREATE INDEX
+Time: 29.963 ms
+CREATE INDEX
+Time: 232.075 ms
+CREATE INDEX
+Time: 1759.263 ms (00:01.759)
+
+
+gtpch1=# drop view if exists revenue0;
+create view revenue0 (supplier_no, total_revenue) as
+        select
+                l_suppkey as l_suppkey,
+                sum(l_extendedprice * (1 - l_discount)) as sum
+        from
+        (
+            select
+                l_suppkey as l_suppkey,
+                l_extendedprice as l_extendedprice,
+                l_discount as l_discount
+            from
+                        lineitem l
+                where
+                        l_shipdate >= date '1996-01-01'
+                        and l_shipdate < date '1996-01-01' + interval '3' month
+        ) as _t
+        group by
+                l_suppkey
+    having true;
+NOTICE:  view "revenue0" does not exist, skipping
+DROP VIEW
+Time: 0.576 ms
+CREATE VIEW
+Time: 3.018 ms
+
+
+gtpch1=# CREATE MATERIALIZED VIEW revenue0_1 AS
+  SELECT nextval('prov_ids')::int tuid, * FROM revenue0;
+
+CREATE MATERIALIZED VIEW revenue0_2 AS
+  SELECT tuid
+       , array[nextval('prov_ids')::int] supplier_no
+       , array[nextval('prov_ids')::int] total_revenue
+  FROM revenue0_1;
+CREATE INDEX ON revenue0_2 (tuid);
+SELECT 10000
+Time: 569.670 ms
+SELECT 10000
+Time: 7.059 ms
+CREATE INDEX
+Time: 1.829 ms
+
+gtpch1=# select pg_database_size(current_database());
+ pg_database_size
+------------------
+       7870857743
+(1 row)
+
+Time: 6.515 ms

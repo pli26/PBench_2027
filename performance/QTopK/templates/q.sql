@@ -1,0 +1,1 @@
+select gc, avg(va) as ava, avg(vc) as avc from fp group by gc order by gc limit LIMIT_VALUE

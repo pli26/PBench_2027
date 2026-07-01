@@ -1,0 +1,1 @@
+select ga, va, vb from vpgn1k, jc where ga = c1to10 and WHERECONDITION

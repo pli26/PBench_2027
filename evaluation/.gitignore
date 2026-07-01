@@ -1,0 +1,15 @@
+
+# remove all unresult folders
+**/duckdb/ 
+**/genQ.py
+**/gprom/
+**/postgresql/
+**/provsql/
+**/smokedduck/
+**/sqlprov/
+**/systems.config
+**/templates/
+**/__init__.py
+**/__pycache__/
+**/logfile
+**/*.zip

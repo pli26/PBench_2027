@@ -1,0 +1,1 @@
+select ga, avg(va) as ava, avg(vb) as avb from FROM_TABLE join JOINED_TABLE on ga = p10 join JJ_TABLE ON ga = c5 group by ga

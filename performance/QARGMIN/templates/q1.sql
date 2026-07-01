@@ -1,0 +1,1 @@
+select ga, minv, c1to10 from (select ga, min(va) as minv from vpgn100 group by ga) tt join jc on tt.minv = c1to10
