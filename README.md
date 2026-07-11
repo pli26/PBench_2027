@@ -20,10 +20,12 @@ This folder contains all scripts to:
 - Generate SQLs for each task
 - Run SQLs for each task
 
+Please refer to the README.md in `./performance/`
+
 ### Systems
 
 This folder contains a file containing simple instructions to make systems work.
 
 ### DB-related
 
-This folder contains a pg16 extension, binary search, that enables GProM to work for coarse-grained provenance model.
+This folder contains a pg16 extension, binary search, that enables GProM to work for coarse-grained provenance model and the prerequisite code for SQLProv.
