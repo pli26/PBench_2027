@@ -1,0 +1,103 @@
+--before
+ptpch1=# select pg_database_size('ptpch1');
+ pg_database_size
+------------------
+       1715315215
+
+--after
+ptpch1=# select pg_database_size('ptpch1');
+ pg_database_size
+------------------
+       2132750819
+(1 row)
+
+ptpch1=# select add_provenance('customer');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 511.818 ms
+ptpch1=# select add_provenance('lineitem');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 20061.355 ms (00:20.061)
+ptpch1=# select add_provenance('nation');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 12.849 ms
+
+ptpch1=# select add_provenance('orders');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 4693.945 ms (00:04.694)
+ptpch1=# select add_provenance('part');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 653.940 ms
+ptpch1=# select add_provenance('partsupp');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 3003.949 ms (00:03.004)
+ptpch1=# select add_provenance('region');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 13.474 ms
+ptpch1=# select add_provenance('supplier');
+ add_provenance
+----------------
+
+(1 row)
+
+Time: 67.002 ms
+-- after
+-rw-------   1 uicdbgroup  staff      65552 Jun 10 14:56 provsql_extra.mmap
+-rw-------   1 uicdbgroup  staff  805306384 Jun 10 15:06 provsql_gates.mmap
+-rw-------   1 uicdbgroup  staff  805306392 Jun 10 15:06 provsql_mapping.mmap
+-rw-------   1 uicdbgroup  staff    1048592 Jun 10 14:56 provsql_wires.mmap
+
+-- before
+-rw-------   1 uicdbgroup  staff    65552 Jun 10 14:56 provsql_extra.mmap
+-rw-------   1 uicdbgroup  staff  3145744 Jun 10 14:56 provsql_gates.mmap
+-rw-------   1 uicdbgroup  staff  1572888 Jun 10 14:56 provsql_mapping.mmap
+-rw-------   1 uicdbgroup  staff  1048592 Jun 10 14:56 provsql_wires.mmap
+
+
+cp provsql_extra.mmap provsql_extra_bk.mmap
+cp provsql_gates.mmap provsql_gates_bk.mmap
+cp provsql_mapping.mmap provsql_mapping_bk.mmap
+cp provsql_wires.mmap provsql_wires_bk.mmap
+cp provsql_table_info.mmap provsql_table_info_bk.mmap
+
+gunzip -c tpch_01_v01_2025_08_20.sql.tar.gz | psql -h localhost -d ptpch1 -p 5455
+pg_ctl -D /Users/uicdbgroup/pengyuan/DBs/installed/nixDB/sf2 stop -m immediateb
+
+select add_provenance('customer');
+select add_provenance('lineitem');
+select add_provenance('orders');
+select add_provenance('nation');
+select add_provenance('part');
+select add_provenance('partsupp');
+select add_provenance('region');
+select add_provenance('supplier');
+
+
+

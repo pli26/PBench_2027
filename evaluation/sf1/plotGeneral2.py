@@ -222,7 +222,7 @@ def plot(sf,
         if 'smokedduck' in systems:
             if plot_all_phase:
                 ax.bar(offsets[barPos], sdT[id], width=barWidth, bottom=Y_FLOOR, label='SmokedDuck', color=p_util.clrsd)
-                ax.text(offsets[barPos], sdT[id], s=f'{int(sdT1[id]/sdT[id]*100)}%', ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
+                ax.text(offsets[barPos], sdT[id] + sdT[id] * 0.03, s=f'{int(sdT1[id]/sdT[id]*100)}%', ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
             else:
                 ax.bar(offsets[barPos], sdT1[id], width=barWidth, bottom=Y_FLOOR, label='SmokedDuck', color=p_util.clrsd)
 
@@ -331,7 +331,8 @@ def plot2(sf,
           Y_FLOOR=1e-3,
           Y_INCREASE_RATIO=1.0,
           Y_FLOOR2=1e-3,
-          xticks: list = None):
+          xticks: list = None,
+          plot_all_phase = False):
 
     gps = []
     gds = []
@@ -435,7 +436,12 @@ def plot2(sf,
         barPos += 1
         leftBars += 1
     if 'sqlprov' in systems:
-        ax.bar(offsets[barPos], sp1s[id], width=barWidth,
+        if plot_all_phase:
+            ax.bar(offsets[barPos], sp1s[id] + sp2s[id], width=barWidth,
+               bottom = Y_FLOOR, label='SQLProv', color=p_util.clrsp)
+            ax.text(offsets[barPos], sp1s[id] + sp2s[id] + 0.02 * (sp1s[id] + sp2s[id]), s=f'{int(sp1s[id]/(sp2s[id] + sp1s[id])*100)}%', ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
+        else:
+            ax.bar(offsets[barPos], sp1s[id], width=barWidth,
                bottom = Y_FLOOR, label='SQLProv', color=p_util.clrsp)
         # ax.text(offsets[barPos], sps[id], s=f'{int(sp1s[id]/sps[id]*100)}%',
         #         ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
@@ -455,7 +461,12 @@ def plot2(sf,
                bottom = Y_FLOOR, label='GProM-D', color=p_util.clrgd)
         barPos += 1
     if 'smokedduck' in systems:
-        ax.bar(offsets[barPos], sd1s[id], width=barWidth,
+        if plot_all_phase:
+            ax.bar(offsets[barPos], sd1s[id] + sd2s[id], width=barWidth,
+               bottom = Y_FLOOR, label='SmokedDuck', color=p_util.clrsd)
+            ax.text(offsets[barPos], sd1s[id] + sd2s[id] + 0.02 * (sd1s[id] + sd2s[id]), s=f'{int(sd1s[id]/(sd2s[id] + sd1s[id])*100)}%', ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
+        else:
+            ax.bar(offsets[barPos], sd1s[id], width=barWidth,
                bottom = Y_FLOOR, label='SmokedDuck', color=p_util.clrsd)
         # ax.text(offsets[barPos], sds[id], s=f'{int(sd1s[id]/sds[id]*100)}%',
         #         ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
@@ -552,7 +563,8 @@ def plotSPOnly(sf,
           Y_FLOOR=1e-3,
           Y_INCREASE_RATIO=1.0,
           Y_FLOOR2=1e-3,
-          xticks: list = None):
+          xticks: list = None,
+          plot_all_phase = False):
 
     assert len(benchQOrders) == len(whichbench), f'benchQOrders: {benchQOrders}, whichbench: {whichbench} : they should have the same length'
     sp1s = []
@@ -599,8 +611,16 @@ def plotSPOnly(sf,
             ax.bar(offsets[barPos],0.0, width=barWidth, bottom = Y_FLOOR)
             barPos += 1
             if 'sqlprov' in systems:
-                ax.bar(offsets[barPos], sp1s[id], width=barWidth,
-                       bottom = Y_FLOOR, label='SQLProv', color=p_util.clrsp)
+
+                if plot_all_phase:
+                    ax.bar(offsets[barPos], sp1s[id] + sp2s[id], width=barWidth, bottom=Y_FLOOR, label='SQLProv', color=p_util.clrsp)
+                    ax.text(offsets[barPos], sp1s[id] + sp2s[id] + 0.02 * (sp1s[id] + sp2s[id]), s=f'{int(sp1s[id]/(sp2s[id] + sp1s[id])*100)}%', ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
+                else:
+                    ax.bar(offsets[barPos], sp1s[id], width=barWidth,bottom = Y_FLOOR, label = 'SQLProv', color = p_util.clrsp)
+
+
+                # ax.bar(offsets[barPos], sp1s[id], width=barWidth,
+                    #    bottom = Y_FLOOR, label='SQLProv', color=p_util.clrsp)
                 ax.hlines(y = posts[id], xmin = offsets[barPos] - barWidth / 2, xmax = offsets[barPos] + barWidth / 2, colors = p_util.clrpg, linestyles = '--', linewidth = LINE_WIDTH, label='PostgreSQL')
                 barPos += 1
             ax.bar(offsets[barPos],0.0, width=barWidth, bottom = Y_FLOOR)
@@ -2285,7 +2305,7 @@ def plotWHRSUB(sf,
             barPos += 1
         if 'smokedduck' in systems:
             if plot_all_phase:
-                ax.bar(offsets[barPos], sdT[id], width=barWidth, bottom=Y_FLOOR, label='SmokedDuck', color=p_util.clrsd)
+                ax.bar(offsets[barPos], sdT[id], width=barWidth, bottom=Y_FLOOR, label='SmokedDuck', color=p_util.clrsd, hatch = '/')
                 ax.text(offsets[barPos], sdT[id], s=f'{int(sdT1[id]/sdT[id]*100)}%', ha='center', va='bottom', fontsize=FONT_SIZE-8, color='blue')
             else:
                 ax.bar(offsets[barPos], sdT1[id], width=barWidth, bottom=Y_FLOOR, label='SmokedDuck', color=p_util.clrsd, hatch = '/')
@@ -2360,7 +2380,7 @@ def plotWHRSUB(sf,
             ax.bar(offsets[barPos], gdS[id], width=barWidth,
                    bottom=Y_FLOOR2, label='GProM w/o Sub', color=p_util.clrgd)
             barPos += 1
-            
+
             ax.bar(offsets[barPos], gp2S[id], width=barWidth,
                    bottom=Y_FLOOR2, label='GProM w/ Sub', color=p_util.clrgp)
             barPos += 1
@@ -2426,47 +2446,51 @@ def plotLegendWHRSUB():
 
 
 if __name__ == '__main__':
+
+    if 1 == 1:
+        plot(sf='sf1', whichbench=['QTopK2', 'QTopK2', 'QTopK2', 'QTopK2'], benchQOrders=[0, 1, 2, 3], saveName='Fig_fpqtopk',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Top 1k', 'Top 10k', 'Top 100k', 'Top 500k'], Y_FLOOR=None, Y_INCREASE_RATIO=1.25, plot_all_phase = True)
+        exit()
     if PLOTTED_LEGEND:
         plotLegend()
         plotLegendWHRSUB()
-    # plot(sf='sf1', whichbench=['FPAgg', 'FPAgg', 'FPAgg'], benchQOrders=[0, 1, 2], saveName='Fig_fpagg',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'provsql', 'smokedduck'], subfigNumTitles=['1M', '10K', '10'], Y_FLOOR=None, Y_INCREASE_RATIO=1.1)
-    # plot(sf='sf1', whichbench=['FPDist', 'FPDist', 'FPDist'], benchQOrders=[0, 1, 2], saveName='Fig_fpdist',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'provsql', 'smokedduck'], subfigNumTitles=['1M', '10K', '10'], Y_FLOOR=None, Y_INCREASE_RATIO=1.4)
-    # plot(sf='sf1', whichbench=['VPJC', 'VPJC', 'VPJC'], benchQOrders=[0, 1, 2], saveName='Fig_vpjc',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['1-1', '1-10', '1-50'], Y_FLOOR=None, Y_INCREASE_RATIO=5.5)
-    # plot(sf='sf1', whichbench=['VPJS', 'VPJS', 'VPJS'], benchQOrders=[0, 1, 2], saveName='Fig_vpjs',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['1%', '10%', '50%'], Y_FLOOR=None, Y_INCREASE_RATIO=4.6)
-    # plot(sf='sf1', whichbench=['VPGN', 'VPGN', 'VPGN'], benchQOrders=[0, 1, 2], saveName='Fig_vpgn',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['100', '1k', '10k'], Y_FLOOR=None, Y_INCREASE_RATIO=5.5)
-    # plot(sf='sf1', whichbench=['VPGS', 'VPGS', 'VPGS'], benchQOrders=[0, 1, 2], saveName='Fig_vpgs',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['100', '1k', '10k'], Y_FLOOR=None, Y_INCREASE_RATIO=5.5)
-    # plot(sf='sf1', whichbench=['QTopK2', 'QTopK2', 'QTopK2', 'QTopK2'], benchQOrders=[0, 1, 2, 3], saveName='Fig_fpqtopk',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Top 0.1%', 'Top 1%', 'Top 10%', 'Top50%'], Y_FLOOR=None, Y_INCREASE_RATIO=1.25, plot_all_phase = True)
-    # plot(sf='sf1', whichbench=['VPJS', 'VPJJ', 'VPJJJ'], benchQOrders=[1, 0, 0], saveName='Fig_vpjn', systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['One Join', 'Two Joins', 'Three Joins'], Y_FLOOR=None, Y_INCREASE_RATIO=3)
-    # plot(sf='sf1', whichbench=['FPAgg', 'QAggNum', 'QAggNum'], benchQOrders=[1, 0, 1], saveName='Fig_qaggnum', systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['2 Aggregation', '4 Aggregation', '8 Aggregation'], Y_FLOOR=1e-2, Y_INCREASE_RATIO=3)
+    plot(sf='sf1', whichbench=['FPAgg', 'FPAgg', 'FPAgg'], benchQOrders=[0, 1, 2], saveName='Fig_fpagg',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'provsql', 'smokedduck'], subfigNumTitles=['1M', '10K', '10'], Y_FLOOR=None, Y_INCREASE_RATIO=1.1, plot_all_phase=True)
+    plot(sf='sf1', whichbench=['FPDist', 'FPDist', 'FPDist'], benchQOrders=[0, 1, 2], saveName='Fig_fpdist',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'provsql', 'smokedduck'], subfigNumTitles=['1M', '10K', '10'], Y_FLOOR=None, Y_INCREASE_RATIO=1.4, plot_all_phase=True)
+    plot(sf='sf1', whichbench=['VPJC', 'VPJC', 'VPJC'], benchQOrders=[0, 1, 2], saveName='Fig_vpjc',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['1-1', '1-10', '1-50'], Y_FLOOR=None, Y_INCREASE_RATIO=5.5, plot_all_phase=True)
+    plot(sf='sf1', whichbench=['VPJS', 'VPJS', 'VPJS'], benchQOrders=[0, 1, 2], saveName='Fig_vpjs',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['1%', '10%', '50%'], Y_FLOOR=None, Y_INCREASE_RATIO=4.6, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['VPGN', 'VPGN', 'VPGN'], benchQOrders=[0, 1, 2], saveName='Fig_vpgn',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['100', '1k', '10k'], Y_FLOOR=None, Y_INCREASE_RATIO=5.5, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['VPGS', 'VPGS', 'VPGS'], benchQOrders=[0, 1, 2], saveName='Fig_vpgs',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['100', '1k', '10k'], Y_FLOOR=None, Y_INCREASE_RATIO=5.5, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['QTopK2', 'QTopK2', 'QTopK2', 'QTopK2'], benchQOrders=[0, 1, 2, 3], saveName='Fig_fpqtopk',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Top 0.1%', 'Top 1%', 'Top 10%', 'Top50%'], Y_FLOOR=None, Y_INCREASE_RATIO=1.25, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['VPJS', 'VPJJ', 'VPJJJ'], benchQOrders=[1, 0, 0], saveName='Fig_vpjn', systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['One Join', 'Two Joins', 'Three Joins'], Y_FLOOR=None, Y_INCREASE_RATIO=3, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['FPAgg', 'QAggNum', 'QAggNum'], benchQOrders=[1, 0, 1], saveName='Fig_qaggnum', systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['2 Aggregation', '4 Aggregation', '8 Aggregation'], Y_FLOOR=2*1e-2, Y_INCREASE_RATIO=3, plot_all_phase = True)
 #---###disabled    plot(sf='sf1', whichbench=['FPSAgg', 'FPSAgg', 'FPSAgg'], benchQOrders=[0, 1, 2], saveName='Fig_qhavingJF',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['10% Filter In', '50% Filter In', '100% Filter In'], Y_FLOOR=2*1e-2, Y_INCREASE_RATIO=1.5, plot_all_phase = True)
 #---###disabled    plot(sf='sf1', whichbench=['FPSAgg', 'FPSAgg', 'FPSAgg'], benchQOrders=[3, 4, 5], saveName='Fig_qhavingFJ',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['10% Filter In', '50% Filter In', '100% Filter In'], Y_FLOOR=1e-2, Y_INCREASE_RATIO=1.8)
-    # plot(sf='sf1', whichbench=['FPSAgg', 'FPSAgg'], benchQOrders=[0, 2], saveName='Fig_qAJ_JA_10groups',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Join Then Aggregation', 'Aggregation Then Join'], Y_FLOOR=3* 1e-2, Y_INCREASE_RATIO=1.3)
-    # plot(sf='sf1', whichbench=['FPSAgg', 'FPSAgg'], benchQOrders=[1, 3], saveName='Fig_qAJ_JA_1kgroups',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Join Then Aggregation', 'Aggregation Then Join'], Y_FLOOR=3* 1e-2, Y_INCREASE_RATIO=1.3)
+    plot(sf='sf1', whichbench=['FPSAgg', 'FPSAgg'], benchQOrders=[0, 2], saveName='Fig_qAJ_JA_10groups',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Join Then Aggregation', 'Aggregation Then Join'], Y_FLOOR=3* 1e-2, Y_INCREASE_RATIO=1.8, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['FPSAgg', 'FPSAgg'], benchQOrders=[1, 3], saveName='Fig_qAJ_JA_1kgroups',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Join Then Aggregation', 'Aggregation Then Join'], Y_FLOOR=3* 1e-2, Y_INCREASE_RATIO=1.8, plot_all_phase = True)
 #---###disabled    plot(sf='sf1', whichbench=['FPSAgg', 'FPSAgg'], benchQOrders=[0, 3], saveName='Fig_qhavingcmp10',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['Join Then Aggregation', 'Aggregation Then Join'], Y_FLOOR=3* 1e-2, Y_INCREASE_RATIO=10.8)
-    # plot(sf='sf1', whichbench=['QCMPLDC', 'QCMPLDC', 'QCMPLDC'], benchQOrders=[0, 1, 2], saveName='Fig_qcmpldc',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['1 block', '2 Blocks', '3 Blocks'], Y_FLOOR=None, Y_INCREASE_RATIO=1.9)
-    # plot(sf='sf1', whichbench=['QARGMIN', 'QARGMIN'], benchQOrders=[0, 1], saveName='Fig_qargmin',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['100 Groups', '1K Groups'], Y_FLOOR=None, Y_INCREASE_RATIO=5.7)
-    # plot(sf='sf1', whichbench=['QLIMIT', 'QLIMIT', 'QLIMIT'], benchQOrders=[0, 1, 2], saveName='Fig_qlimit',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['Limit 0.1%', 'Limit 1%', 'Limit 10%'], Y_FLOOR=None, Y_INCREASE_RATIO=1.7)
-    # plot(sf='sf1', whichbench=['QMLAgg', 'QMLAgg'], benchQOrders=[0, 1], saveName='Fig_qmlagg',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['1K Groups', '1M Groups'], Y_FLOOR=None, Y_INCREASE_RATIO=4.7)
-    # plotSPOnly(sf='sf1', whichbench=['QWIN', 'QWIN', 'QWIN'], benchQOrders=[0, 1, 2], saveName='Fig_qwin',systems=['sqlprov', 'postgresql'], subfigNumTitles=['W/O partition', 'W/ partition (10)', 'W/ partition (1K)'], Y_FLOOR=3, Y_FLOOR2=0,Y_INCREASE_RATIO=1.2)
-    # plotSPOnly(sf='sf1', whichbench=['QRCRW', 'QRCRW'], benchQOrders=[0, 1], saveName='Fig_qrcrw',systems=['sqlprov', 'postgresql'], subfigNumTitles=['Depth: 2', 'Depth: 3'], Y_FLOOR=2 * 1e-2, Y_FLOOR2=1e-1,Y_INCREASE_RATIO=15)
-    # plot(sf='sf1', whichbench=['QSET', 'QSET', 'QSET'], benchQOrders=[0, 1, 2], saveName='Fig_qset',systems=['postgresql', 'duckdb', 'gprom', 'smokedduck', 'provsql'], subfigNumTitles=['Data Remove: 10%', 'Data Remove: 50%', 'Data Remove: 100%'], Y_FLOOR=1.2 * 1e-1, Y_FLOOR2=11,Y_INCREASE_RATIO=1.2)
-#- 
+    plot(sf='sf1', whichbench=['QCMPLDC', 'QCMPLDC', 'QCMPLDC'], benchQOrders=[0, 1, 2], saveName='Fig_qcmpldc',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['1 block', '2 Blocks', '3 Blocks'], Y_FLOOR=None, Y_INCREASE_RATIO=1.9, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['QARGMIN', 'QARGMIN'], benchQOrders=[0, 1], saveName='Fig_qargmin',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['100 Groups', '1K Groups'], Y_FLOOR=None, Y_INCREASE_RATIO=6.16, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['QLIMIT', 'QLIMIT', 'QLIMIT'], benchQOrders=[0, 1, 2], saveName='Fig_qlimit',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck', 'provsql'], subfigNumTitles=['Limit 0.1%', 'Limit 1%', 'Limit 10%'], Y_FLOOR=None, Y_INCREASE_RATIO=1.7, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['QMLAgg', 'QMLAgg'], benchQOrders=[0, 1], saveName='Fig_qmlagg',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['1K Groups', '1M Groups'], Y_FLOOR=None, Y_INCREASE_RATIO=19.7, plot_all_phase = True)
+    plotSPOnly(sf='sf1', whichbench=['QWIN', 'QWIN', 'QWIN'], benchQOrders=[0, 1, 2], saveName='Fig_qwin',systems=['sqlprov', 'postgresql'], subfigNumTitles=['W/O partition', 'W/ partition (10)', 'W/ partition (1K)'], Y_FLOOR=3, Y_FLOOR2=0,Y_INCREASE_RATIO=1.2, plot_all_phase = True)
+    plotSPOnly(sf='sf1', whichbench=['QRCRW', 'QRCRW'], benchQOrders=[0, 1], saveName='Fig_qrcrw',systems=['sqlprov', 'postgresql'], subfigNumTitles=['Depth: 2', 'Depth: 3'], Y_FLOOR=2 * 1e-2, Y_FLOOR2=1e-1,Y_INCREASE_RATIO=15, plot_all_phase = True)
+    plot(sf='sf1', whichbench=['QSET', 'QSET', 'QSET'], benchQOrders=[0, 1, 2], saveName='Fig_qset',systems=['postgresql', 'duckdb', 'gprom', 'smokedduck', 'provsql'], subfigNumTitles=['Data Remove: 10%', 'Data Remove: 50%', 'Data Remove: 100%'], Y_FLOOR=1.2 * 1e-1, Y_FLOOR2=11,Y_INCREASE_RATIO=1.2, plot_all_phase= True)
+#-
     # plotProvPoly(sf = 'sf1', saveName='Fig_PP', subfigureTitles=['One Join', 'Two Joins', 'Three Joins', 'Join(10%) Agg.', 'Join(50%) Agg.'], whichbench='PP', benchQOrders=0, Y_FLOOR = 1.1 * 1e-1, Y_INCREASE_RATIO=1.7, Y_FLOOR2= 2)
     # plotApproProv(sf = 'sf1', saveName='Fig_AP', subfigureTitles=['10 Ranges', '100 Ranges', '500 Ranges'], whichbench='PP', benchQOrders=0, Y_INCREASE_RATIO=1.7, Y_FLOOR=1e-2)
-#- 
+#-
 #-     # -- join then distinct
-    # plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[0, 1, 2], saveName='Fig_fsdistjd1',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1:1', '1:50', '1:1k'], Y_FLOOR=1e-3, Y_INCREASE_RATIO=1.5, SECOND_SYS_START_POST=0.87)
-    # plot(sf='sf1', whichbench=['FPSDist', 'FPSDist'], benchQOrders=[3, 4], saveName='Fig_fsdistjd50',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['50:50', '50:1k'], Y_FLOOR=5* 1e-3, Y_INCREASE_RATIO=1.5, Y_FLOOR2=100, SECOND_SYS_START_POST=0.87)
-    # plot2(sf='sf1', whichbench=['FPSDist'], benchQOrders=[8], saveName='Fig_fsdistjd1k',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1k:1k'], Y_FLOOR=1e-3, Y_INCREASE_RATIO=1.2)
+    plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[0, 1, 2], saveName='Fig_fsdistjd1',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1:1', '1:50', '1:1k'], Y_FLOOR=1e-3, Y_INCREASE_RATIO=1.5, SECOND_SYS_START_POST=0.87, plot_all_phase=True)
+    plot(sf='sf1', whichbench=['FPSDist', 'FPSDist'], benchQOrders=[3, 4], saveName='Fig_fsdistjd50',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['50:50', '50:1k'], Y_FLOOR=5* 1e-3, Y_INCREASE_RATIO=1.5, Y_FLOOR2=100, SECOND_SYS_START_POST=0.87, plot_all_phase=True)
+    plot2(sf='sf1', whichbench=['FPSDist'], benchQOrders=[8], saveName='Fig_fsdistjd1k',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1k:1k'], Y_FLOOR=1e-3, Y_INCREASE_RATIO=1.2, plot_all_phase = True)
 #-     # -- distinct then join distinct
-    # plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[9, 10, 11], saveName='Fig_fsdistdj1',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1:1', '1:50', '1:1k'], Y_FLOOR=3*1e-4, Y_INCREASE_RATIO=1.2, SECOND_SYS_START_POST= 0.87)
-    # plot(sf='sf1', whichbench=['FPSDist', 'FPSDist'], benchQOrders=[13, 14], saveName='Fig_fsdistdj50',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['50:50', '50:1k'], Y_FLOOR=3*1e-4, Y_INCREASE_RATIO=1.2, Y_FLOOR2=1e-2, SECOND_SYS_START_POST= 0.87)
-    # plot2(sf='sf1', whichbench=['FPSDist'], benchQOrders=[17], saveName='Fig_fsdistdj1k', systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1k:1k'], Y_FLOOR=4*1e-4, Y_INCREASE_RATIO=1.1, Y_FLOOR2 = 1e-2)
+    plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[9, 10, 11], saveName='Fig_fsdistdj1',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1:1', '1:50', '1:1k'], Y_FLOOR=3*1e-4, Y_INCREASE_RATIO=1.2, SECOND_SYS_START_POST= 0.87, plot_all_phase=True)
+    plot(sf='sf1', whichbench=['FPSDist', 'FPSDist'], benchQOrders=[13, 14], saveName='Fig_fsdistdj50',systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['50:50', '50:1k'], Y_FLOOR=3*1e-4, Y_INCREASE_RATIO=1.2, Y_FLOOR2=1e-2, SECOND_SYS_START_POST= 0.87, plot_all_phase=True)
+    plot2(sf='sf1', whichbench=['FPSDist'], benchQOrders=[17], saveName='Fig_fsdistdj1k', systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1k:1k'], Y_FLOOR=4*1e-4, Y_INCREASE_RATIO=1.3, Y_FLOOR2 = 1e-2, plot_all_phase = True)
 #-     # --
-    # plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[3, 12, 4, 13], saveName='Fig_fsdistcmp50', systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['50:50 Join First', '50:50 Distinct First', '50:1k Join First', '50:1k Distinct First'], Y_FLOOR=4*1e-4, Y_INCREASE_RATIO=1.2,INCREASE_WIDTH = 1.5, SECOND_SYS_START_POST = 0.87)
-#     plot(sf='sf1', whichbench=['FPSDist', 'FPSDist'], benchQOrders=[8, 17], saveName='Fig_fsdistcmp1k', systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1k:1k Join First', '1k:1k Distinct First'], Y_FLOOR=4*1e-4, Y_INCREASE_RATIO=1.2,INCREASE_WIDTH = 1.5)
-    # plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[0, 1, 9, 10,], saveName='Fig_fsdistcmp1',  systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1:1 Join First', '1:1 Distinct First', '1:50 Join First', '1:50 Distinct First'], Y_FLOOR=3*1e-4, Y_INCREASE_RATIO=1.3,INCREASE_WIDTH = 1.5, SECOND_SYS_START_POST=0.87)
-#- 
+    plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[3, 12, 4, 13], saveName='Fig_fsdistcmp50', systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['50:50 Join First', '50:50 Distinct First', '50:1k Join First', '50:1k Distinct First'], Y_FLOOR=4*1e-4, Y_INCREASE_RATIO=1.2,INCREASE_WIDTH = 1.5, SECOND_SYS_START_POST = 0.87, plot_all_phase=True)
+    plot(sf='sf1', whichbench=['FPSDist', 'FPSDist'], benchQOrders=[8, 17], saveName='Fig_fsdistcmp1k', systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1k:1k Join First', '1k:1k Distinct First'], Y_FLOOR=4*1e-4, Y_INCREASE_RATIO=1.2,INCREASE_WIDTH = 1.5, plot_all_phase=True)
+    plot(sf='sf1', whichbench=['FPSDist', 'FPSDist', 'FPSDist', 'FPSDist'], benchQOrders=[0, 1, 9, 10,], saveName='Fig_fsdistcmp1',  systems=['postgresql', 'duckdb', 'sqlprov', 'gprom', 'provsql'], subfigNumTitles=['1:1 Join First', '1:1 Distinct First', '1:50 Join First', '1:50 Distinct First'], Y_FLOOR=3*1e-4, Y_INCREASE_RATIO=1.3,INCREASE_WIDTH = 1.5, SECOND_SYS_START_POST=0.87, plot_all_phase=True)
+#-
     # plotsrd2(sf='sf1', saveName='Fig_PMRLIN2_WITMIN', subfigureTitles=['End-to-end', 'Capture', 'Query', 'Reproduce'], wichbench='PMRLIN2', benchQOrders=0, isRL=True, Y_INCREASE_RATIO=1.2, Y_FLOOR = 1.1*1e-3, Y_FLOOR2= 1.1 * 1e-1, hasSMD = True, GPSS = 0.57, GDSS = 1.0)
     # plotsrd2(sf='sf1', saveName='Fig_PMRLIN2_WITP1',  subfigureTitles=['End-to-end', 'Capture', 'Query', 'Reproduce'], wichbench='PMRLIN2', benchQOrders=1, isRL=True, Y_INCREASE_RATIO=1.2, Y_FLOOR=1.1 *1e-2,  Y_FLOOR2 = 1.1,  hasSMD = True, GPSS = 7, GDSS = 1.7)
     # plotsrd2(sf='sf1', saveName='Fig_PMRLIN2_WITP20', subfigureTitles=['End-to-end', 'Capture', 'Query', 'Reproduce'], wichbench='PMRLIN2', benchQOrders=2, isRL=True, Y_INCREASE_RATIO=1.2, Y_FLOOR=5* 1e-2, Y_FLOOR2= 11, hasSMD = True, GPSS = 130.71, GDSS = 15.7)
@@ -2479,4 +2503,4 @@ if __name__ == '__main__':
 
     # plotPM(sf = 'sf1', savename='Fig_PM', subfigureTitles=['Lineage', f'Minimal Witnesses', f'Provenance Polynomial', f'Approximate Provenance'], whichbench='PM', benchQOrders=0, isRL=True, Y_INCREASE_RATIO=1.5, Y_FLOOR=4* 1e-3)
 
-    plotWHRSUB(sf='sf1', whichbench=['QWHRSUB', 'QWHRSUB', 'QWHRSUB'], benchQOrders=[0, 1, 2], saveName='Fig_qwhrsub',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['1 Subquery', '2 Subqueries', '3 Subqueries'], Y_FLOOR=1.2 * 1e-3, Y_FLOOR2=1e-0,Y_INCREASE_RATIO=2.5)
+    plotWHRSUB(sf='sf1', whichbench=['QWHRSUB', 'QWHRSUB', 'QWHRSUB'], benchQOrders=[0, 1, 2], saveName='Fig_qwhrsub',systems=['postgresql', 'duckdb', 'gprom', 'sqlprov', 'smokedduck'], subfigNumTitles=['1 Subquery', '2 Subqueries', '3 Subqueries'], Y_FLOOR=1.2 * 1e-3, Y_FLOOR2=1e-0,Y_INCREASE_RATIO=2.5, plot_all_phase=True)

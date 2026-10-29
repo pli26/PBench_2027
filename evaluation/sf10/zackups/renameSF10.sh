@@ -1,0 +1,13 @@
+mv Fig_fpdist_sf1.png                 Fig_fpdist_sf10.png                                                                                        
+mv Fig_fpqtopk_sf1.png                Fig_fpqtopk_sf10.png                                                                     
+mv Fig_fsdistcmp50_sf1.png            Fig_fsdistcmp50_sf10.png                                                                     
+mv Fig_fsdistjd50_sf1.png             Fig_fsdistjd50_sf10.png                                                                     
+mv Fig_PMFD2_fetchMapping_sf1.png     Fig_PMFD2_fetchMapping_sf10.png                                                                     
+mv Fig_PMFD2_fetchRes_sf1.png         Fig_PMFD2_fetchRes_sf10.png                                                                     
+mv Fig_PMRLIN2_WITMIN_sf1.png         Fig_PMRLIN2_WITMIN_sf10.png                                                                     
+mv Fig_PMRLIN2_WITP1_sf1.png          Fig_PMRLIN2_WITP1_sf10.png                                                                     
+mv Fig_PMRLIN2_WITP20_sf1.png         Fig_PMRLIN2_WITP20_sf10.png                                                                     
+mv Fig_PP_sf1.png                     Fig_PP_sf10.png                                                                     
+mv Fig_qcmpldc_sf1.png                Fig_qcmpldc_sf10.png                                                                     
+mv Fig_qwhrsub_sf1.png                Fig_qwhrsub_sf10.png                                                                     
+mv Fig_vpgn_sf1.png                   Fig_vpgn_sf10.png                                                                     

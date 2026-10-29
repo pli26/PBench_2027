@@ -83,24 +83,16 @@ create index idx_fp3_vc on fp3 (vc);
 --------------------------
 -- reduced to MIN
 drop materialized view if exists fp1_1 cascade;
-create materialized view fp1_1 (tuid, id, ga, gb, gc, hv, va, vb, vc) as
-select tuid, id, ga, gb, gc, hv, va, vb, vc
-from (
-    select tuid, id, ga, gb, gc, hv, va, vb, vc, row_number() over (partition by gb order by id) as rn
-    from fp_1
-) t
-where t.rn <= 1;
+create materialized view fp1_1 as select nextval('prov_ids')::int tuid, * from fp1;
+create index idx_mul_fp_1_ga on fp1_1 (ga);
+create index idx_mul_fp_1_gb on fp1_1 (gb);
+create index idx_mul_fp_1_gc on fp1_1 (gc);
+create index idx_mul_fp_1_hv on fp1_1 (hv);
+create index idx_mul_fp_1_va on fp1_1 (va);
+create index idx_mul_fp_1_vb on fp1_1 (vb);
+create index idx_mul_fp_1_vc on fp1_1 (vc);
+drop materialized view if exists fp1_2 cascade;
 
-create index idx_fp1_1_id on fp1_1 (id);
-create index idx_fp1_1_ga on fp1_1 (ga);
-create index idx_fp1_1_gb on fp1_1 (gb);
-create index idx_fp1_1_gc on fp1_1 (gc);
-create index idx_fp1_1_hv on fp1_1 (hv);
-create index idx_fp1_1_va on fp1_1 (va);
-create index idx_fp1_1_vb on fp1_1 (vb);
-create index idx_fp1_1_vc on fp1_1 (vc);
-
-drop materialized view if exists fp1_2;
 create materialized view fp1_2 as select tuid
 ,  array[nextval('prov_ids')::int] id
 ,  array[nextval('prov_ids')::int] ga
@@ -111,29 +103,67 @@ create materialized view fp1_2 as select tuid
 ,  array[nextval('prov_ids')::int] vb
 ,  array[nextval('prov_ids')::int] vc
 from fp1_1;
-drop index if exists idx_fp1_2_tuid;
-create index idx_fp1_2_tuid on fp1_2 (tuid);
+drop index if exists idx_fp_1_tuid;
+create index idx_mul_fp_1_tuid on fp1_2 (tuid);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- drop materialized view if exists fp1_1 cascade;
+-- create materialized view fp1_1 (tuid, id, ga, gb, gc, hv, va, vb, vc) as
+-- select tuid, id, ga, gb, gc, hv, va, vb, vc
+-- from (
+--     select tuid, id, ga, gb, gc, hv, va, vb, vc, row_number() over (partition by gb order by id) as rn
+--     from fp_1
+-- ) t
+-- where t.rn <= 1;
+--
+-- create index idx_fp1_1_id on fp1_1 (id);
+-- create index idx_fp1_1_ga on fp1_1 (ga);
+-- create index idx_fp1_1_gb on fp1_1 (gb);
+-- create index idx_fp1_1_gc on fp1_1 (gc);
+-- create index idx_fp1_1_hv on fp1_1 (hv);
+-- create index idx_fp1_1_va on fp1_1 (va);
+-- create index idx_fp1_1_vb on fp1_1 (vb);
+-- create index idx_fp1_1_vc on fp1_1 (vc);
+--
+-- drop materialized view if exists fp1_2;
+-- create materialized view fp1_2 as select tuid
+-- ,  array[nextval('prov_ids')::int] id
+-- ,  array[nextval('prov_ids')::int] ga
+-- ,  array[nextval('prov_ids')::int] gb
+-- ,  array[nextval('prov_ids')::int] gc
+-- ,  array[nextval('prov_ids')::int] hv
+-- ,  array[nextval('prov_ids')::int] va
+-- ,  array[nextval('prov_ids')::int] vb
+-- ,  array[nextval('prov_ids')::int] vc
+-- from fp1_1;
+-- drop index if exists idx_fp1_2_tuid;
+-- create index idx_fp1_2_tuid on fp1_2 (tuid);
 
 -- reduced to 1%
+
 drop materialized view if exists fp2_1 cascade;
-create materialized view fp2_1 (tuid, id, ga, gb, gc, hv, va, vb, vc) as
-select tuid, id, ga, gb, gc, hv, va, vb, vc
-from (
-    select tuid, id, ga, gb, gc, hv, va, vb, vc, row_number() over (partition by gb order by id) as rn
-    from fp_1
-) t
-where t.rn <= 100;
-
-create index idx_fp2_1_id on fp2_1 (id);
-create index idx_fp2_1_ga on fp2_1 (ga);
-create index idx_fp2_1_gb on fp2_1 (gb);
-create index idx_fp2_1_gc on fp2_1 (gc);
-create index idx_fp2_1_hv on fp2_1 (hv);
-create index idx_fp2_1_va on fp2_1 (va);
-create index idx_fp2_1_vb on fp2_1 (vb);
-create index idx_fp2_1_vc on fp2_1 (vc);
-
-drop materialized view if exists fp2_2;
+create materialized view fp2_1 as select nextval('prov_ids')::int tuid, * from fp2;
+create index idx_mul_fp_2_ga on fp2_1 (ga);
+create index idx_mul_fp_2_gb on fp2_1 (gb);
+create index idx_mul_fp_2_gc on fp2_1 (gc);
+create index idx_mul_fp_2_hv on fp2_1 (hv);
+create index idx_mul_fp_2_va on fp2_1 (va);
+create index idx_mul_fp_2_vb on fp2_1 (vb);
+create index idx_mul_fp_2_vc on fp2_1 (vc);
+drop materialized view if exists fp2_2 cascade;
 create materialized view fp2_2 as select tuid
 ,  array[nextval('prov_ids')::int] id
 ,  array[nextval('prov_ids')::int] ga
@@ -144,31 +174,55 @@ create materialized view fp2_2 as select tuid
 ,  array[nextval('prov_ids')::int] vb
 ,  array[nextval('prov_ids')::int] vc
 from fp2_1;
-drop index if exists idx_fp2_2_tuid;
-create index idx_fp2_2_tuid on fp2_2 (tuid);
+drop index if exists idx_fp_2_tuid;
+create index idx_mul_fp_2_tuid on fp2_2 (tuid);
+
+
+-- drop materialized view if exists fp2_1 cascade;
+-- create materialized view fp2_1 (tuid, id, ga, gb, gc, hv, va, vb, vc) as
+-- select tuid, id, ga, gb, gc, hv, va, vb, vc
+-- from (
+--     select tuid, id, ga, gb, gc, hv, va, vb, vc, row_number() over (partition by gb order by id) as rn
+--     from fp_1
+-- ) t
+-- where t.rn <= 100;
+--
+-- create index idx_fp2_1_id on fp2_1 (id);
+-- create index idx_fp2_1_ga on fp2_1 (ga);
+-- create index idx_fp2_1_gb on fp2_1 (gb);
+-- create index idx_fp2_1_gc on fp2_1 (gc);
+-- create index idx_fp2_1_hv on fp2_1 (hv);
+-- create index idx_fp2_1_va on fp2_1 (va);
+-- create index idx_fp2_1_vb on fp2_1 (vb);
+-- create index idx_fp2_1_vc on fp2_1 (vc);
+--
+-- drop materialized view if exists fp2_2;
+-- create materialized view fp2_2 as select tuid
+-- ,  array[nextval('prov_ids')::int] id
+-- ,  array[nextval('prov_ids')::int] ga
+-- ,  array[nextval('prov_ids')::int] gb
+-- ,  array[nextval('prov_ids')::int] gc
+-- ,  array[nextval('prov_ids')::int] hv
+-- ,  array[nextval('prov_ids')::int] va
+-- ,  array[nextval('prov_ids')::int] vb
+-- ,  array[nextval('prov_ids')::int] vc
+-- from fp2_1;
+-- drop index if exists idx_fp2_2_tuid;
+-- create index idx_fp2_2_tuid on fp2_2 (tuid);
 
 
 
 -- reduced to 20%
 drop materialized view if exists fp3_1 cascade;
-create materialized view fp3_1 (tuid, id, ga, gb, gc, hv, va, vb, vc) as
-select tuid, id, ga, gb, gc, hv, va, vb, vc
-from (
-    select tuid, id, ga, gb, gc, hv, va, vb, vc, row_number() over (partition by gb order by id) as rn
-    from fp_1
-) t
-where t.rn <= 2000;
-
-create index idx_fp3_1_id on fp3_1 (id);
-create index idx_fp3_1_ga on fp3_1 (ga);
-create index idx_fp3_1_gb on fp3_1 (gb);
-create index idx_fp3_1_gc on fp3_1 (gc);
-create index idx_fp3_1_hv on fp3_1 (hv);
-create index idx_fp3_1_va on fp3_1 (va);
-create index idx_fp3_1_vb on fp3_1 (vb);
-create index idx_fp3_1_vc on fp3_1 (vc);
-
-drop materialized view if exists fp3_2;
+create materialized view fp3_1 as select nextval('prov_ids')::int tuid, * from fp3;
+create index idx_mul_fp_3_ga on fp3_1 (ga);
+create index idx_mul_fp_3_gb on fp3_1 (gb);
+create index idx_mul_fp_3_gc on fp3_1 (gc);
+create index idx_mul_fp_3_hv on fp3_1 (hv);
+create index idx_mul_fp_3_va on fp3_1 (va);
+create index idx_mul_fp_3_vb on fp3_1 (vb);
+create index idx_mul_fp_3_vc on fp3_1 (vc);
+drop materialized view if exists fp3_2 cascade;
 create materialized view fp3_2 as select tuid
 ,  array[nextval('prov_ids')::int] id
 ,  array[nextval('prov_ids')::int] ga
@@ -179,8 +233,39 @@ create materialized view fp3_2 as select tuid
 ,  array[nextval('prov_ids')::int] vb
 ,  array[nextval('prov_ids')::int] vc
 from fp3_1;
-drop index if exists idx_fp3_2_tuid;
-create index idx_fp3_2_tuid on fp3_2 (tuid);
+drop index if exists idx_fp_3_tuid;
+create index idx_mul_fp_3_tuid on fp3_1 (tuid);
+-- drop materialized view if exists fp3_1 cascade;
+-- create materialized view fp3_1 (tuid, id, ga, gb, gc, hv, va, vb, vc) as
+-- select tuid, id, ga, gb, gc, hv, va, vb, vc
+-- from (
+--     select tuid, id, ga, gb, gc, hv, va, vb, vc, row_number() over (partition by gb order by id) as rn
+--     from fp_1
+-- ) t
+-- where t.rn <= 2000;
+--
+-- create index idx_fp3_1_id on fp3_1 (id);
+-- create index idx_fp3_1_ga on fp3_1 (ga);
+-- create index idx_fp3_1_gb on fp3_1 (gb);
+-- create index idx_fp3_1_gc on fp3_1 (gc);
+-- create index idx_fp3_1_hv on fp3_1 (hv);
+-- create index idx_fp3_1_va on fp3_1 (va);
+-- create index idx_fp3_1_vb on fp3_1 (vb);
+-- create index idx_fp3_1_vc on fp3_1 (vc);
+--
+-- drop materialized view if exists fp3_2;
+-- create materialized view fp3_2 as select tuid
+-- ,  array[nextval('prov_ids')::int] id
+-- ,  array[nextval('prov_ids')::int] ga
+-- ,  array[nextval('prov_ids')::int] gb
+-- ,  array[nextval('prov_ids')::int] gc
+-- ,  array[nextval('prov_ids')::int] hv
+-- ,  array[nextval('prov_ids')::int] va
+-- ,  array[nextval('prov_ids')::int] vb
+-- ,  array[nextval('prov_ids')::int] vc
+-- from fp3_1;
+-- drop index if exists idx_fp3_2_tuid;
+-- create index idx_fp3_2_tuid on fp3_2 (tuid);
 
 
 
